@@ -21,7 +21,7 @@ export default postcss.plugin('postcss-sqrt', () => {
 
 				// Replace the function with css variable that calculates square root
 				let newValue = decl.value.replace(SQRT_REGEX, function () {
-					return 'var(--guess10)'
+					return `calc((var(--guess09) + ( ${functionValue} / var(--guess09))) / 2)`
 				})
 
 				// Update the declaration value
@@ -41,8 +41,7 @@ export default postcss.plugin('postcss-sqrt', () => {
 --guess06: calc((var(--guess05) + ( ${functionValue} / var(--guess05))) / 2);
 --guess07: calc((var(--guess06) + ( ${functionValue} / var(--guess06))) / 2);
 --guess08: calc((var(--guess07) + ( ${functionValue} / var(--guess07))) / 2);
---guess09: calc((var(--guess08) + ( ${functionValue} / var(--guess08))) / 2);
---guess10: calc((var(--guess09) + ( ${functionValue} / var(--guess09))) / 2);`
+--guess09: calc((var(--guess08) + ( ${functionValue} / var(--guess08))) / 2);`
 
 				let props = postcss.parse(TEMPLATE)
 

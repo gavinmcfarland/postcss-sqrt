@@ -12,6 +12,5 @@
 	--guess07: calc((var(--guess06) + ( var(--number) / var(--guess06))) / 2);
 	--guess08: calc((var(--guess07) + ( var(--number) / var(--guess07))) / 2);
 	--guess09: calc((var(--guess08) + ( var(--number) / var(--guess08))) / 2);
-	--guess10: calc((var(--guess09) + ( var(--number) / var(--guess09))) / 2);
-	width: calc(50% - (var(--guess10) * 1px));
+	width: calc(50% - (calc((var(--guess09) + ( var(--number) / var(--guess09))) / 2) * 1px));
 }
