@@ -1,7 +1,7 @@
 {
   "name": "postcss-sqrt",
   "version": "1.0.0",
-  "description": "... in CSS",
+  "description": "Calculate the square root of something dynamically in CSS",
   "author": "limitlessloop <5551+limitlessloop@users.noreply.github.com>",
   "license": "CC0-1.0",
   "repository": "limitlessloop/postcss-sqrt",
