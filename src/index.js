@@ -1,12 +1,6 @@
 import postcss from 'postcss';
 
-const SQRT_REGEX = /sqrt\(([^)]+.+?)\)/
-// const VAR_REGEX = /var\(([^)]+.+?)\)/
-
 export default postcss.plugin('postcss-sqrt', () => {
-	// console.log({
-	// 	opts
-	// }); // eslint-disable-line no-console
 
 	return (root) => {
 		root.walkRules(rule => {
@@ -14,26 +8,31 @@ export default postcss.plugin('postcss-sqrt', () => {
 			let functionValue = ""
 
 			rule.walkDecls(decl => {
-				// let matches = SQRT_REGEX.exec(decl.value)
+				const SQRT_REGEX = /sqrt\(([^)]+.+?)\)/
+
+				// Check if decl has a sqrt function inside it
 				isMatch = SQRT_REGEX.exec(decl.value) ? true : false;
 
+				// If it does grab the value of the function
 				if (isMatch) {
 					let matches = SQRT_REGEX.exec(decl.value);
 					functionValue = matches[1]
 				}
 
-				// functionValue = matches[1]
-
+				// Replace the function with css variable that calculates square root
 				let newValue = decl.value.replace(SQRT_REGEX, function () {
 					return 'var(--guess10)'
 				})
 
+				// Update the declaration value
 				decl.value = newValue
 
 			})
 
+			// Add the css required for dynamic sqrt calculation
 			if (isMatch) {
 
+				// Using suggestion from mountarreat https://stackoverflow.com/a/49461883/97650
 				const TEMPLATE = `--guess01: calc((${functionValue} + ( ${functionValue} / ${functionValue})) / 2);
 --guess02: calc((var(--guess01) + ( ${functionValue} / var(--guess01))) / 2);
 --guess03: calc((var(--guess02) + ( ${functionValue} / var(--guess02))) / 2);
@@ -53,10 +52,5 @@ export default postcss.plugin('postcss-sqrt', () => {
 				i.raws.before = "\n\t"
 			});
 		})
-
-		// console.log({
-		// 	root,
-		// 	result
-		// }); // eslint-disable-line no-console
 	};
 });
