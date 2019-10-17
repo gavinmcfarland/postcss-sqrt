@@ -1,0 +1,7 @@
+:root {
+	--number: 7200;
+}
+
+.test {
+	width: calc(50% - (sqrt(var(--number)) * 1px));
+}
