@@ -1,0 +1,28 @@
+:root {
+	--number: 7200;
+}
+
+.with_var {
+	--guess01: calc((var(--number) + ( var(--number) / var(--number))) / 2);
+	--guess02: calc((var(--guess01) + ( var(--number) / var(--guess01))) / 2);
+	--guess03: calc((var(--guess02) + ( var(--number) / var(--guess02))) / 2);
+	--guess04: calc((var(--guess03) + ( var(--number) / var(--guess03))) / 2);
+	--guess05: calc((var(--guess04) + ( var(--number) / var(--guess04))) / 2);
+	--guess06: calc((var(--guess05) + ( var(--number) / var(--guess05))) / 2);
+	--guess07: calc((var(--guess06) + ( var(--number) / var(--guess06))) / 2);
+	--guess08: calc((var(--guess07) + ( var(--number) / var(--guess07))) / 2);
+	width: calc(50% - (calc((var(--guess08) + ( var(--number) / var(--guess08))) / 2) * 1px));
+}
+
+.without_var {
+	--sqrt-number: 6000;
+	--guess01: calc((var(--sqrt-number) + ( var(--sqrt-number) / var(--sqrt-number))) / 2);
+	--guess02: calc((var(--guess01) + ( var(--sqrt-number) / var(--guess01))) / 2);
+	--guess03: calc((var(--guess02) + ( var(--sqrt-number) / var(--guess02))) / 2);
+	--guess04: calc((var(--guess03) + ( var(--sqrt-number) / var(--guess03))) / 2);
+	--guess05: calc((var(--guess04) + ( var(--sqrt-number) / var(--guess04))) / 2);
+	--guess06: calc((var(--guess05) + ( var(--sqrt-number) / var(--guess05))) / 2);
+	--guess07: calc((var(--guess06) + ( var(--sqrt-number) / var(--guess06))) / 2);
+	--guess08: calc((var(--guess07) + ( var(--sqrt-number) / var(--guess07))) / 2);
+	width: calc(50% - (calc((var(--guess08) + ( var(--sqrt-number) / var(--guess08))) / 2) * 1px));
+}
