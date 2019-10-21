@@ -1,40 +1,52 @@
 import postcss from 'postcss';
-import Variable, { Base } from './variables.js';
+import CSSvar, { Base } from './cssvar.js';
+import formula from './formula.js';
 import approx from './approximation.js';
 
+// Add the css required for dynamic sqrt calculation
+const dynamicCSS = (base, apxTime) => {
+	const LOCALVAR = !CSSvar.isVar(base) ?
+		new Base(base).set() :
+		'';
+
+	const TEMPLATE = apxTime > 1 ?
+		approx(base, apxTime) :
+		'';
+
+	return LOCALVAR+TEMPLATE
+}
+
 const walkRule = rule => {
-	let isMatch = false
+	let isExist = false
 	const fnArgs = {}
 
 	rule.walkDecls(decl => {
-		const SQRT_REGEX = /sqrt\(([^)]+.+?)\)/
+		const SQRT_REGEX = /sqrt\(([^)]+?)\)/
 
 		// Check if decl has a sqrt function inside it
-		isMatch = SQRT_REGEX.exec(decl.value) ? true : false;
+		isExist = SQRT_REGEX.exec(decl.value) ? true : false;
 
 		// If it does grab the value of the function
-		if (isMatch) {
-			let matches = SQRT_REGEX.exec(decl.value);
+		if (isExist) {
+			const matches = SQRT_REGEX.exec(decl.value);
 			const ARGS = matches[1].split(',')
-			const _APX = parseInt(ARGS[1])
+			const _APX_TIME = parseInt(ARGS[1])
 
 			fnArgs.base = ARGS[0].trim()
-			fnArgs.approx = (_APX < 1 || _APX === NaN) ? 1 : _APX
+			fnArgs.approx = (isNaN(_APX_TIME) || _APX_TIME < 1) ? 5 : _APX_TIME
 
 			// Replace & update the function
 			// with css variable that calculates square root
 			decl.value = decl.value.replace(SQRT_REGEX, function () {
-				return approx(fnArgs.base, fnArgs.approx, { getLast: true })
+				return formula(fnArgs.base, fnArgs.approx - 1)
 			})
 		}
 	})
 
-	// Add the css required for dynamic sqrt calculation
-	if (isMatch && fnArgs.approx > 1) {
-		const LOCALVAR = Variable.isVar(fnArgs.base) ?
-			'' : new Base(fnArgs.base).set();
-		const TEMPLATE = approx(fnArgs.base, fnArgs.approx)
-		rule.prepend(postcss.parse(LOCALVAR + TEMPLATE))
+	if (isExist) {
+		const TEMPLATE = dynamicCSS(fnArgs.base, fnArgs.approx)
+		const PROPS = postcss.parse(TEMPLATE)
+		rule.prepend(PROPS)
 	}
 
 	rule.walk(i => {

@@ -1,7 +1,6 @@
-// Wait for an interface dream comes true!
-const Variable = class {
-	constructor(name, val = '', override = false) {
-		if (Variable.isVar(val) && override === true) {
+export default class CSSvar {
+	constructor(name, val = '') {
+		if (CSSvar.isVar(val)) {
 			this.name = val.replace(/^--/, '')
 			this.val = null
 		} else {
@@ -12,7 +11,7 @@ const Variable = class {
 
 	static isVar(str) {
 		if (!str) { return false }
-		return str.match(/^--/) != null ? true : false
+		return /^--/.test(str)
 	}
 
 	set(val = null) {
@@ -29,17 +28,14 @@ const Variable = class {
 	}
 }
 
-
-export class Base extends Variable {
+export class Base extends CSSvar {
 	constructor(val) {
-		super('sqrt of', val, true)
+		super(`sqrt ${val}`, val)
 	}
 }
 
-export class Guess extends Variable {
-	constructor(val) {
-		super('guess', val)
+export class Guess extends CSSvar {
+	constructor(name) {
+		super(`guess${name}`)
 	}
 }
-
-export { Variable as default }

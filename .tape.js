@@ -1,5 +1,8 @@
 module.exports = {
 	'basic': {
-		message: 'supports basic usage'
+		message: 'Basic test case: 1 argument (base)'
+	},
+	'advance': {
+		message: 'Advance test case: 2 arguments (base, approximation)'
 	}
 };
