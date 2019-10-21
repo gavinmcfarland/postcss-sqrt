@@ -6,6 +6,6 @@
 	width: calc(50% - (sqrt(--number) * 1px));
 }
 
-.without_var {
+.with_int {
 	width: calc(50% - (sqrt(6000) * 1px));
 }
