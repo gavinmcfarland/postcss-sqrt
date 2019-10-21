@@ -13,7 +13,7 @@ const dynamicCSS = (base, apxTime) => {
 		approx(base, apxTime) :
 		'';
 
-	return LOCALVAR+TEMPLATE
+	return LOCALVAR + TEMPLATE
 }
 
 const walkRule = rule => {
@@ -38,7 +38,12 @@ const walkRule = rule => {
 			// Replace & update the function
 			// with css variable that calculates square root
 			decl.value = decl.value.replace(SQRT_REGEX, function () {
-				return formula(fnArgs.base, fnArgs.approx - 1)
+				return formula(
+					fnArgs.base,
+					fnArgs.approx > 1 ?
+						fnArgs.approx - 1 :
+						null
+				)
 			})
 		}
 	})

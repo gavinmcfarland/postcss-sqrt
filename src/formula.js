@@ -9,8 +9,8 @@ import { Base, Guess } from './cssvar.js'
  * @export
  * Square root formula for dynamic CSS
  * 
- * @param	{Guess}	Guess
- * @param	{Base}	Base
+ * @param	{string, int}	Base	(required)
+ * @param	{string}		Guess	(optional)
  * @returns	{string}
  */
 export default function formula(base, guessName = null) {
