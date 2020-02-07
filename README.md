@@ -69,9 +69,6 @@ postcss([
 | [Node](INSTALL.md#node) | [PostCSS CLI](INSTALL.md#postcss-cli) | [Webpack](INSTALL.md#webpack) | [Create React App](INSTALL.md#create-react-app) | [Gulp](INSTALL.md#gulp) | [Grunt](INSTALL.md#grunt) |
 | ----------------------- | ------------------------------------- | ----------------------------- | ----------------------------------------------- | ----------------------- | ------------------------- |
 
-## Options
-
-...
 
 [cli-img]: https://img.shields.io/travis/limitlessloop/postcss-sqrt/master.svg
 [cli-url]: https://travis-ci.org/limitlessloop/postcss-sqrt
