@@ -6,6 +6,8 @@
 
 [PostCSS SQRT] lets you calculate the square root of something dynamically in CSS. Sometimes this is useful if your design relies on CSS variables which change dynamically, like changing variables at different breakpoints.
 
+Update: `sqrt()` might finally be coming to CSS with [trigonometric functions](https://github.com/w3c/csswg-drafts/issues/2331#issuecomment-467990627). Yay!
+
 ```pcss
 :root {
 	--number: 7200;
