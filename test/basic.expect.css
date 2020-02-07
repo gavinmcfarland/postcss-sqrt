@@ -2,15 +2,19 @@
 	--number: 7200;
 }
 
-.test {
-	--guess01: calc((var(--number) + ( var(--number) / var(--number))) / 2);
-	--guess02: calc((var(--guess01) + ( var(--number) / var(--guess01))) / 2);
-	--guess03: calc((var(--guess02) + ( var(--number) / var(--guess02))) / 2);
-	--guess04: calc((var(--guess03) + ( var(--number) / var(--guess03))) / 2);
-	--guess05: calc((var(--guess04) + ( var(--number) / var(--guess04))) / 2);
-	--guess06: calc((var(--guess05) + ( var(--number) / var(--guess05))) / 2);
-	--guess07: calc((var(--guess06) + ( var(--number) / var(--guess06))) / 2);
-	--guess08: calc((var(--guess07) + ( var(--number) / var(--guess07))) / 2);
-	--guess09: calc((var(--guess08) + ( var(--number) / var(--guess08))) / 2);
-	width: calc(50% - (calc((var(--guess09) + ( var(--number) / var(--guess09))) / 2) * 1px));
+.with_var {
+	--guess1: calc((var(--number) + (var(--number) / var(--number))) / 2);
+	--guess2: calc((var(--guess1) + (var(--number) / var(--guess1))) / 2);
+	--guess3: calc((var(--guess2) + (var(--number) / var(--guess2))) / 2);
+	--guess4: calc((var(--guess3) + (var(--number) / var(--guess3))) / 2);
+	width: calc(50% - (calc((var(--guess4) + (var(--number) / var(--guess4))) / 2) * 1px));
+}
+
+.with_int {
+	--sqrt-6000: 6000;
+	--guess1: calc((var(--sqrt-6000) + (var(--sqrt-6000) / var(--sqrt-6000))) / 2);
+	--guess2: calc((var(--guess1) + (var(--sqrt-6000) / var(--guess1))) / 2);
+	--guess3: calc((var(--guess2) + (var(--sqrt-6000) / var(--guess2))) / 2);
+	--guess4: calc((var(--guess3) + (var(--sqrt-6000) / var(--guess3))) / 2);
+	width: calc(50% - (calc((var(--guess4) + (var(--sqrt-6000) / var(--guess4))) / 2) * 1px));
 }

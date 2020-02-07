@@ -1,0 +1,15 @@
+:root {
+	--number: 7200;
+}
+
+.with_var {
+	width: calc(50% - (sqrt(--number, 9) * 1px));
+}
+
+.with_int {
+	width: calc(50% - (sqrt(6000, 9) * 1px));
+}
+
+.low_approx {
+	width: calc(50% - (sqrt(1000, 1) * 1px));
+}
